@@ -1,0 +1,79 @@
+{% extends "@FrontTemplates/layout/default.html.twig" %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-xl-8 col-md-12" style=" margin: 0 auto; width: 100%;">
+            <div>
+                <h4 class="card-title">Game Details</h4>
+                <p class="card-category">Details of selected game</p>
+            </div>
+            <div style="text-align: center">
+                <div class="content">
+                    <div>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <label class="text-center font-italic">Name</label>
+                                </td>
+                                <td>{{ game.name }}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="text-center font-italic">Status</label>
+                                </td>
+                                <td>{{ game.status }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="text-right pull-right">
+                            <a href="{{ path('army_create', {'gameId':game.id}) }}" class="btn btn-primary btn-lg">Add Army</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-md-12">
+            <div>
+                <h4 class="title">Armies</h4>
+                <p>List of armies added for selected game</p>
+            </div>
+            <div class="table">
+                <table class="table">
+                    <thead class="text-primary">
+                    <th>ID</th>
+                    <th>Army Name</th>
+                    <th>No. of units</th>
+                    <th>Attack Strategy</th>
+                    <th>Actions</th>
+                    </thead>
+                    {% for a in armies %}
+                        <tbody>
+                        <tr>
+                        <tr>
+                            <td>{{ a.id }}</td>
+                            <td>{{ a.name }}</td>
+                            <td>{{ a.units }}</td>
+                            <td>{{ a.attackStrategy }}</td>
+                            <td class="td-actions text-left">
+                                <a href="{{ path('army_delete', {'id':a.id}) }}" data-toggle="confirmation" data-message="Are you sure to delete this item?" rel="tooltip" title="Remove" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6 float-right">
+            {% if countArmies >= 5 %}
+                <a href="" data-message="Wanna fight?!?" rel="tooltip" title="Run Attack" class="btn btn-info btn-lg">Run Attack</a>
+            {% endif %}
+        </div>
+    </div>
+
+
+{% endblock %}

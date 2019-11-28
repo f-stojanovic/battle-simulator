@@ -1,0 +1,35 @@
+{% extends "@FrontTemplates/layout/default.html.twig" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-8 col-md-12" style="margin: 0 auto; width: 100%;">
+                <div>
+                    <h4>Edit Game</h4>
+                    <p>Edit existing game</p>
+                </div>
+                <div class=body">
+                    {{ form_start(form, {'method': 'POST'}) }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{ form_row(form.name) }}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{ form_row(form.status) }}
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

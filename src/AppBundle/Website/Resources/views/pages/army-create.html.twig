@@ -1,0 +1,48 @@
+{% extends "@FrontTemplates/layout/default.html.twig" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-8 col-md-12" style="margin: 0 auto; width: 100%;">
+                <div>
+                    <h4>Create Army</h4>
+                    <p>Add new army to selected game</p>
+                </div>
+                <div class=body">
+                    {{ form_start(form, {'method': 'POST'}) }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{ form_row(form.game) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{ form_row(form.name) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{ form_row(form.units) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{ form_row(form.attackStrategy) }}
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

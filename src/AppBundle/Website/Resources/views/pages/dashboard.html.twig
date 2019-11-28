@@ -1,0 +1,53 @@
+{% extends "@FrontTemplates/layout/default.html.twig" %}
+
+{% block content %}
+
+    <!-- Table
+    ================================================== -->
+        <div class="row">
+            <div class="col-sm-12">
+                {% include ('@FrontTemplates/overrides/flash-messages.html.twig') %}
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <div class="text-right pull-right">
+                            <a href="{{ path('game_create') }}" class="btn btn-success btn-md">Add</a>
+                        </div>
+                        <h4>Games</h4>
+                        <p>List of games</p>
+                    </div>
+                    <div class="body">
+                        <table class="table">
+                            <thead class="table-active text-center text-primary">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th class="text-lg">Actions</th>
+                            </thead>
+                            {% for g in games %}
+                                <tbody class="text-center">
+                                <tr class="table-primary">
+                                    <td>{{ g.id }}</td>
+                                    <td class="text-white">{{ g.name }}</td>
+                                    <td>{{ g.status }}</td>
+                                    <td class="td-actions">
+                                        <a href="{{ path('game_show', {'id':g.id}) }}" title="Details" class="btn btn-info btn-sm">Show</a>
+                                        <a href="{{ path('game_edit', {'id':g.id}) }}" title="Edit" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="{{ path('game_delete', {'id':g.id}) }}" data-toggle="confirmation" data-message="Are you sure to delete this item?"  title="Remove" class="btn btn-danger btn-sm">Delete</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                        <div class="navigation float-lg-right">
+                            {{ knp_pagination_render(games) }}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

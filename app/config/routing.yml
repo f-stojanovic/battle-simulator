@@ -1,0 +1,4 @@
+battle_website:
+    resource: '@AppBundle/Website/Controller/'
+    type: annotation
+
