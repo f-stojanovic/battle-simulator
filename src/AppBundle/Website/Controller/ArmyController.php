@@ -15,9 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Validator\Constraints\Range;
-use Symfony\Component\Validator\Constraints\Blank;
 
 class ArmyController extends BaseController
 {
@@ -43,7 +41,7 @@ class ArmyController extends BaseController
             ))
             ->add('name', TextType::class, array(
                 'label' => 'Name',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ))
             ->add('units', IntegerType::class, array(
                 'required' => true,

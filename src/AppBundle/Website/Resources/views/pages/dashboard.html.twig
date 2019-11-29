@@ -29,16 +29,16 @@
                             </thead>
                             {% for g in games %}
                                 <tbody class="text-center">
-                                <tr class="table-primary">
-                                    <td>{{ g.id }}</td>
-                                    <td class="text-white">{{ g.name }}</td>
-                                    <td>{{ g.status }}</td>
-                                    <td class="td-actions">
-                                        <a href="{{ path('game_show', {'id':g.id}) }}" title="Details" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ path('game_edit', {'id':g.id}) }}" title="Edit" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="{{ path('game_delete', {'id':g.id}) }}" data-toggle="confirmation" data-message="Are you sure to delete this item?"  title="Remove" class="btn btn-danger btn-sm">Delete</a>
-                                    </td>
-                                </tr>
+                                    <tr class="table-primary">
+                                        <td>{{ g.id }}</td>
+                                        <td class="text-white">{{ g.name }}</td>
+                                        <td>{{ g.status }}</td>
+                                        <td class="td-actions">
+                                            <a href="{{ path('game_show', {'id':g.id}) }}" title="Details" class="btn btn-info btn-sm">Show</a>
+                                            <a href="{{ path('game_edit', {'id':g.id}) }}" title="Edit" class="btn btn-warning btn-sm">Edit</a>
+                                            <a href="{{ path('game_delete', {'id':g.id}) }}" data-toggle="confirmation" data-message="Are you sure to delete this item?"  title="Remove" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             {% endfor %}
                         </table>

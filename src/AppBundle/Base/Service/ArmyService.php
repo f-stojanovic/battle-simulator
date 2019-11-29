@@ -3,6 +3,7 @@
 namespace AppBundle\Base\Service;
 
 use AppBundle\Base\Entity\Army;
+use AppBundle\Base\Entity\Game;
 
 class ArmyService extends BaseAdminService
 {
@@ -49,6 +50,34 @@ class ArmyService extends BaseAdminService
             ->getQuery()
             ->getResult();
 
-        return intval($result[0][1]);
+        if (empty($result)) {
+            return 0;
+        } else {
+            return intval($result[0][1]);
+        }
+    }
+
+    /**
+     * Load all armies of the game
+     * 
+     * @param $gameId
+     * @return mixed
+     */
+    public function loadArmies($gameId)
+    {
+        $game = $this->getGameRepository()->find($gameId);
+
+        $game->setStatus(Game::STATUS_ACTIVE);
+        $this->em->flush();
+
+        $armies = $this->getArmyRepository()
+            ->createQueryBuilder('a')
+            ->select('a')
+            ->where('a.game = :game')
+            ->setParameter('game', $game)
+            ->getQuery()
+            ->getResult();
+
+        return $armies;
     }
 }
