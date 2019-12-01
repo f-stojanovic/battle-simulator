@@ -37,29 +37,29 @@ class ArmyService extends BaseAdminService
      *
      * @param $game
      * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function countArmies($game)
     {
         $result = $this->getArmyRepository()
-            ->createQueryBuilder('lu')
-            ->select("u.id, count(lu.id)")
-            ->join("lu.game", "u")
-            ->where('lu.game = :game')
+            ->createQueryBuilder('a')
+            ->select('COUNT(a)')
+            ->where('a.game = :game')
             ->setParameter('game', $game)
-            ->groupBy('lu.game')
             ->getQuery()
-            ->getResult();
+            ->getSingleScalarResult();
 
         if (empty($result)) {
             return 0;
         } else {
-            return intval($result[0][1]);
+            return intval($result);
         }
     }
 
     /**
      * Load all armies of the game
-     * 
+     *
      * @param $gameId
      * @return mixed
      */

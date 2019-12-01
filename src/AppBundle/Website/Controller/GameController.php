@@ -133,6 +133,8 @@ class GameController extends BaseController
      * @Route("/game/show/{id}", name="game_show")
      * @param Game $id
      * @return Response
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function gameShowAction(Game $id)
     {
@@ -148,7 +150,7 @@ class GameController extends BaseController
         return $this->render('@FrontTemplates/pages/game-show.html.twig', array(
             'game' => $game,
             'armies' => $armies,
-            'countArmies' => $countArmies
+            'countArmies' => $countArmies,
         ));
     }
 }

@@ -11,14 +11,50 @@
                 </div>
                 <div class=body">
                     {% for la in loadArmies %}
-                    <div class="army">
-                        <div><h5>{{ la.name }}</h5></div>
-                        <div><h3>{{ la.units }}</h3></div>
-                    </div>
+                        {% if la.units >= 0 %}
+                        <div class="army">
+                            <div><h5>{{ la.name }}</h5></div>
+                            <div><h5>{{ la.units }}</h5></div>
+                        </div>
+                    {% else %}
+                        <div class="army" style="visibility: hidden">
+                            <div><h5>{{ la.name }}</h5></div>
+                            <div><h5>{{ la.units }}</h5></div>
+                        </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="container" style="box-sizing: border-box; border: 2px solid black;">
+        <div class="row">
+            <div class="col-md-12" style="margin: 0 auto; width: 100%;">
+                <div class="text-center font-weight-bold">
+                    <h4>Game log</h4>
+                    <p>Log of current attack</p>
+                </div>
+                <div class=body">
+                    <div class="text-center">
+                        <h5>Name of the game: {{ game.name }}</h5>
+                        <p>Current status: {{ game.status }}</p>
+                    </div>
+                    <div class="text-center">
+                        <p>Army with the name of  <b>{{ attackWeakest[0].name }}</b> with attack strategy  <b>{{ attackWeakest[0].attackStrategy }}</b> attacked <b>{{ attackWeakest[1].name }}</b> with lowest number of units!</p>
+                        <p>Army with the name of  <b>{{ attackStrongest[0].name }}</b> with attack strategy  <b>{{ attackStrongest[0].attackStrategy }}</b> attacked <b>{{ attackStrongest[1].name }}</b> with highest number of units!</p>
+                        <p>Army with the name of  <b>{{ attackRandom[0].name }}</b> with attack strategy  <b>{{ attackRandom[0].attackStrategy }}</b> attacked <b>{{ attackRandom[1].name }}</b> picked randomly!</p>
+                        {% if findDefeated %}
+                            <p>Army with the name of  <b>{{ findDefeated.name }}</b> is defeated!</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center" style="margin-top: 10px">
+        <a href="{{ path('run_attack', {'gameId':game.id}) }}" data-message="Wanna fight?!?" rel="tooltip" title="Run Again" class="btn btn-info btn-lg">Run Again</a>
+    </div>
+
 
 {% endblock %}

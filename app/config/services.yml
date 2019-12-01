@@ -44,3 +44,8 @@ services:
         class: AppBundle\Base\Service\ArmyService
         arguments: ["@service_container", "@doctrine.orm.default_entity_manager"]
         public: true
+
+    attack.strategy:
+        class: AppBundle\Base\Service\AttackStrategyService
+        arguments: ["@service_container", "@doctrine.orm.default_entity_manager"]
+        public: true
