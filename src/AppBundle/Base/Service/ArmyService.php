@@ -75,6 +75,7 @@ class ArmyService extends BaseAdminService
             ->select('a')
             ->where('a.game = :game')
             ->setParameter('game', $game)
+            ->orderBy('a.id', 'DESC')
             ->getQuery()
             ->getResult();
 

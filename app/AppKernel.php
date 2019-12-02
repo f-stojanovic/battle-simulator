@@ -21,7 +21,6 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         ];
 

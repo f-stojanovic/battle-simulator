@@ -143,7 +143,10 @@ class GameController extends BaseController
             ->find($id);
 
         $armies = $this->getDoctrine()
-            ->getRepository('AppBundle:Army')->findBy(['game' => $game]);
+            ->getRepository('AppBundle:Army')->findBy(
+                array('game' => $game),
+                array('id' => 'DESC')
+            );
 
         $countArmies = $this->container->get('army')->countArmies($game);
 

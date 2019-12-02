@@ -1,5 +1,5 @@
 {
-    "name": "root/loyo",
+    "name": "root/battlesimulator",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -36,7 +36,7 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/symfony": "3.4.*",
         "symfony/webpack-encore-bundle": "^1.6",
-        "twig/twig": "^1.0||^2.0",
+        "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

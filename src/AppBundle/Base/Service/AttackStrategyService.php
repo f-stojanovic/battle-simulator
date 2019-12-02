@@ -20,11 +20,15 @@ class AttackStrategyService extends BaseAdminService
             'attackStrategy'=> Army::ATTACK_STRATEGY_WEAKEST
         ]);
 
+
         $attack = $this->getArmyRepository()
             ->createQueryBuilder('a')
             ->select('a, MIN(a.units) AS min_units')
             ->where('a.game = :game')
             ->setParameter('game', $gameId)
+            ->groupBy('a')
+            ->orderBy('min_units', 'ASC')
+            ->setMaxResults(1)
             ->getQuery()
             ->getResult();
 
@@ -57,12 +61,16 @@ class AttackStrategyService extends BaseAdminService
             ->select('a, MAX(a.units) AS max_units')
             ->where('a.game = :game')
             ->setParameter('game', $gameId)
+            ->groupBy('a')
+            ->orderBy('max_units', 'ASC')
+            ->setMaxResults(1)
             ->getQuery()
             ->getResult();
 
         $attackUnit = $this->getArmyRepository()->findOneBy([
             'units' => intval($attack[0]['max_units'])
         ]);
+
         $unitKilled = $attackUnit->getUnits() -1;
 
         $attackUnit->setUnits($unitKilled);
